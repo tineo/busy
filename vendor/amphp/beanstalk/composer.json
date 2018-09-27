@@ -1,0 +1,32 @@
+{
+    "name": "amphp/beanstalk",
+    "description": "Async beanstalk driver for Amp.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Niklas Keller",
+            "email": "me@kelunik.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Amp\\Beanstalk\\": "src"
+        }
+    },
+    "require": {
+        "amphp/amp": "^2",
+        "amphp/socket": "^0.10",
+        "amphp/uri": "^0.1",
+        "symfony/yaml": "^3.3"
+    },
+    "require-dev": {
+        "amphp/phpunit-util": "^1",
+        "phpunit/phpunit": "^6",
+        "friendsofphp/php-cs-fixer": "^2.3"
+    },
+    "config": {
+        "platform": {
+            "php": "7.0.0"
+        }
+    }
+}

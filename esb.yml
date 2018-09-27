@@ -1,0 +1,32 @@
+parameters:
+  beanstalkd: tcp://127.0.0.1:11300                         # Beanstalkd connection URI
+  http_server_port: 34981                                   # HTTP Server Port
+  critical_events_to: toemail@address.com                   # Email address where to send critical events notifications
+  critical_events_from: "From Name <fromemail@address.com>" # From name/address for critical events notifications
+  console_port: 8080                                        # Web console port
+  console_username: admin                                   # Web console username
+  console_password: password                                # Web console password
+  console_log_file: /tmp/esb_console.log                    # Web console server log file
+
+services:
+  _defaults:
+    autowire: true                  # This is optional (see https://symfony.com/doc/current/service_container/autowiring.html)
+
+  Arqui\Esb\Producer:                  # A producer service definition
+    arguments: []
+
+  Arqui\Esb\Worker:                    # A worker service definition
+    arguments: []
+
+
+flows:
+  sample_flow:                      # The flow "code" and will be the Beanstalkd tube name
+    description: Sample Flow        # The flow description
+    producer:
+      service: Arqui\Esb\Producer      # A producer service ID defined above
+    worker:
+      service: Arqui\Esb\Worker        # A worker service ID defined above
+      instances: 1                  # The number of worker instances to spawn for this flow
+      release_delay: 0              # The jobs release delay in seconds for this flow (see the Beanstalkd protocol here https://github.com/beanstalkd/beanstalkd/blob/master/doc/protocol.txt)
+      max_retry: 5                  # The number of maximum work retries for a job in this tube/flow before being buried
+

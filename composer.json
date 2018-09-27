@@ -1,0 +1,9 @@
+{
+    "require": {
+        "webgriffe/esb": "dev-master"
+    },
+
+    "autoload": {
+        "psr-4": {"Arqui\\Esb\\": "src/"}
+    }
+}
